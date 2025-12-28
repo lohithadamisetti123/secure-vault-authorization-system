@@ -1,5 +1,5 @@
-import { ethers, network } from "hardhat";
-import fs from "fs";
+const { ethers, network } = require("hardhat");
+const fs = require("fs");
 
 async function main() {
   const [deployer] = await ethers.getSigners();
@@ -12,7 +12,6 @@ async function main() {
   console.log("Chain ID:", (await ethers.provider.getNetwork()).chainId.toString());
   console.log("==============================================\n");
 
-  // Use deployer as off-chain signer for demo
   const signerAddress = deployer.address;
 
   console.log("Deploying AuthorizationManager...");
