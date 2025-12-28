@@ -1,5 +1,7 @@
 import { expect } from "chai";
-import { ethers } from "hardhat";
+import hre from "hardhat";
+
+const { ethers } = hre;
 
 describe("SecureVault Authorization System", function () {
   let authManager, vault, signer, user, recipient;
