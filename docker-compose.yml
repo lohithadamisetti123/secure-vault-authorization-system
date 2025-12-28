@@ -1,5 +1,3 @@
-version: "3.8"
-
 services:
   blockchain:
     image: trufflesuite/ganache:v7.9.0
@@ -10,16 +8,10 @@ services:
       - "--chain.networkId=31337"
       - "--chain.chainId=31337"
       - "--miner.blockTime=1"
-      - "--wallet.defaultBalance=1000"
     ports:
       - "8545:8545"
     networks:
       - vault-network
-    healthcheck:
-      test: ["CMD", "nc", "-z", "localhost", "8545"]
-      interval: 5s
-      timeout: 3s
-      retries: 10
 
   deployer:
     build:
@@ -27,14 +19,11 @@ services:
       dockerfile: ./docker/Dockerfile
     container_name: secure-vault-deployer
     depends_on:
-      blockchain:
-        condition: service_healthy
+      - blockchain
     environment:
       - HARDHAT_NETWORK=localhost
     volumes:
       - ./deployments:/app/deployments
-      - ./contracts:/app/contracts
-      - ./scripts:/app/scripts
     networks:
       - vault-network
 
