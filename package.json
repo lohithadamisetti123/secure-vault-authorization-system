@@ -1,0 +1,32 @@
+{
+  "name": "secure-vault-authorization-system",
+  "version": "1.0.0",
+  "description": "Secure multi-contract vault system with authorization manager for Web3. EIP-712 signed withdrawals with single-use enforcement.",
+  "main": "index.js",
+  "scripts": {
+    "compile": "npx hardhat compile",
+    "test": "npx hardhat test",
+    "deploy": "npx hardhat run scripts/deploy.js --network localhost",
+    "deploy:local": "npx hardhat run scripts/deploy.js --network hardhat",
+    "docker:build": "docker-compose build",
+    "docker:up": "docker-compose up",
+    "docker:down": "docker-compose down",
+    "docker:logs": "docker-compose logs -f"
+  },
+  "keywords": [
+    "blockchain",
+    "ethereum",
+    "vault",
+    "authorization",
+    "web3",
+    "smart-contracts",
+    "eip-712"
+  ],
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "@nomicfoundation/hardhat-toolbox": "^5.0.0",
+    "hardhat": "^2.22.0",
+    "ethers": "^6.10.0"
+  }
+}

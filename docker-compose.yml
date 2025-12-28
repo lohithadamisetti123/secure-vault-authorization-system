@@ -1,0 +1,43 @@
+version: "3.8"
+
+services:
+  blockchain:
+    image: trufflesuite/ganache:v7.9.0
+    container_name: secure-vault-blockchain
+    command: 
+      - "--host=0.0.0.0"
+      - "--port=8545"
+      - "--chain.networkId=31337"
+      - "--chain.chainId=31337"
+      - "--miner.blockTime=1"
+      - "--wallet.defaultBalance=1000"
+    ports:
+      - "8545:8545"
+    networks:
+      - vault-network
+    healthcheck:
+      test: ["CMD", "nc", "-z", "localhost", "8545"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+
+  deployer:
+    build:
+      context: .
+      dockerfile: ./docker/Dockerfile
+    container_name: secure-vault-deployer
+    depends_on:
+      blockchain:
+        condition: service_healthy
+    environment:
+      - HARDHAT_NETWORK=localhost
+    volumes:
+      - ./deployments:/app/deployments
+      - ./contracts:/app/contracts
+      - ./scripts:/app/scripts
+    networks:
+      - vault-network
+
+networks:
+  vault-network:
+    driver: bridge
