@@ -1,4 +1,3 @@
-
 # Secure Vault Authorization System
 
 Production-grade multi-contract vault with EIP-712 signed authorizations and single-use enforcement.
@@ -189,4 +188,3 @@ cat deployments/local.json
 
 **Repository**: https://github.com/lohithadamisetti123/secure-vault-authorization-system  
 **License**: MIT
-```
