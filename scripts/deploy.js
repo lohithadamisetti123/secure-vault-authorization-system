@@ -1,5 +1,5 @@
-const { ethers, network } = require("hardhat");
-const fs = require("fs");
+import { ethers, network } from "hardhat";
+import fs from "fs";
 
 async function main() {
   const [deployer] = await ethers.getSigners();
